@@ -13,7 +13,6 @@ st.set_page_config(page_title="호텔 통합 관리 시스템", page_icon="🏨"
 def init_connection():
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     # Secrets에 저장된 JSON 문자열을 파싱해서 사용
-    json_creds = json.loads(st.secrets["gcp_json"])
     creds = ServiceAccountCredentials.from_json_keyfile_dict(json_creds, scope)
     return gspread.authorize(creds)
 
@@ -80,3 +79,4 @@ with tab2:
             save_data(edited_df)
         st.success("저장 완료! 구글 스프레드시트를 확인해보세요.")
         st.rerun()
+
